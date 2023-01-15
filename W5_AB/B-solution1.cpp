@@ -7,7 +7,7 @@
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 14/01/2023 04:51:34                                                               *
+* Last Modified: 14/01/2023 09:27:59                                                               *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -72,7 +72,8 @@ bool isPrimePlain(int n){
 }
 
 int main(){
-    int t, n, e, i, k, l, m, b, *res, a[MAXSIZE];
+    int t, n, e, i, k, l, r, c, m, *res, a[MAXSIZE];
+    eulerFilter(MAXSIZE);
     cin >> t;
     res = new int[t];
     for(l = 0; l < t; l++){
@@ -81,6 +82,16 @@ int main(){
         for(m = 0; m < n; m++){
             cin >> a[m];
         }
+        for(m = 0; m < n; m++){
+            l = m = 0;
+            if(isPrime[a[m]]){
+                c = m - e;
+                while(l){
+                    if(a[l] == 1) 
+                }
+            }
+        }
+    }
 
     return 0;
 

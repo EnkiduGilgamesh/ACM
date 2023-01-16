@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \B-solution1.cpp                                                                           *
-* Project: Q5_AB                                                                                   *
-* Created Date: Saturday Jan 14th 2023, 2:43:42 pm                                                 *
+* File: \F.cpp                                                                                     *
+* Project: 20230114_Contest                                                                        *
+* Created Date: Monday Jan 16th 2023, 10:41:47 am                                                  *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 14/01/2023 09:27:59                                                               *
+* Last Modified: 16/01/2023 11:47:53                                                               *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -24,28 +24,12 @@
 
 using namespace std;
 
-#define MAXSIZE 200000 + 10
+#define MAXSIZE 3000000
 
 bool isPrime[MAXSIZE];
-int prime[MAXSIZE], primeNum = 0;                // a array to storage prime numbers 
+long long prime[MAXSIZE], primeNum = 0;
 
-// filtrate if the number is prime under maximum max(inlcuding max), 
-// and the prime numbers' number is primeNum, 
-// all of them are storaged in prime array
-void eratosthenesFilter(int max){  
-    memset(isPrime, true, sizeof(isPrime));              
-    isPrime[0] = isPrime[1] = false;
-    int i, j;
-    for(i = 2; i <= max; i++){
-        if(isPrime[i]){
-            prime[primeNum++] = i;
-            for(j = i * i; j <= max; j += i)
-                isPrime[j] = false;
-        }
-    }
-}
-
-void eulerFilter(int max){
+void eulerFilter(long long max){
     memset(isPrime, true, sizeof(isPrime));
     isPrime[0] = isPrime[1] = false;
     int i, j;
@@ -59,40 +43,35 @@ void eulerFilter(int max){
     }
 }
 
-bool isPrimePlain(int n){
-    int i;
-    double s = sqrt(double(n));
-    if(n == 1) return false;
-    if(n == 2) return true;
-
-    for(i = 2; i <= s; i++)
-        if(!(n % i)) return false;
-    
-    return true;
-}
-
 int main(){
-    int t, n, e, i, k, l, r, c, m, *res, a[MAXSIZE];
-    eulerFilter(MAXSIZE);
+    eulerFilter(2100000);
+    int t, i, j;
+    long long n, m, (*res)[2];
     cin >> t;
-    res = new int[t];
-    for(l = 0; l < t; l++){
-        res[l] = 0;
-        cin >> n >> e;
-        for(m = 0; m < n; m++){
-            cin >> a[m];
-        }
-        for(m = 0; m < n; m++){
-            l = m = 0;
-            if(isPrime[a[m]]){
-                c = m - e;
-                while(l){
-                    if(a[l] == 1) 
+    res = new long long[t][2];
+    for(i = 0; i < t; i++){
+        cin >> n;
+        for(j = 0; j < primeNum; j++){
+            m = n / prime[j];
+            if(!(n % prime[j])){
+                if(!(m % prime[j])){
+                    res[i][0] = prime[j];
+                    res[i][1] = n / (prime[j] * prime[j]);
+                    break;
+                }
+                else{
+                    res[i][0] = (long long)sqrt(n / prime[j]);
+                    res[i][1] = prime[j];
+                    break;
                 }
             }
+            else continue;
         }
     }
 
-    return 0;
+    for(i = 0; i < t; i++){
+        cout << res[i][0] << " " << res[i][1] << endl;
+    }
 
+    return 0;
 }

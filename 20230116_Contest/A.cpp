@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \C.cpp                                                                                     *
-* Project: 20230114_Contest                                                                        *
-* Created Date: Saturday Jan 14th 2023, 10:57:27 pm                                                *
+* File: \A.cpp                                                                                     *
+* Project: 20230116_Contest                                                                        *
+* Created Date: Monday Jan 16th 2023, 1:00:13 pm                                                   *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 15/01/2023 07:29:30                                                               *
+* Last Modified: 16/01/2023 01:51:41                                                               *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -23,26 +23,39 @@
 
 using namespace std;
 
-#define MAXN 0x3f3f3f3f
-
 int main(){
-    int t, n, a, i, j;
-    long long  s1, s2, * res;
+    int t, i, j, len, sa, sb, *res;
+    string s;
+
     cin >> t;
-    res = new long long[t];
+    res = new int[t];
+    for(i = 0; i < t; i++) res[i] = -1;
     for(i = 0; i < t; i++){
-        res[i] = 0;
-        cin >> n;
-        for(j = 0; j < n; j++){
-            cin >> a;
-            res[i] += a;
+        cin >> s;
+        sa = sb = 0;
+
+        for(j = 0; j < 5; j++){
+            if(s[2 * j] == '1') sa++;
+            if(sb > sa && (sb - sa) > (4 - j)){
+                res[i] = 2 * j + 1;
+                break;
+            }
+            else if(sa > sb && (sa - sb) > (5 - j)){
+                res[i] = 2 * j + 1;
+                break;
+            }
+
+            if(s[2 * j + 1] == '1') sb++;
+
+            // cout << abs(sa - sb) << endl;
+
+            if(abs(sa - sb) > (4 - j)){
+                res[i] = 2 * (j + 1);
+                break;
+            }
         }
-        res[i] = abs(res[i]);
     }
 
-    for(i = 0; i < t; i++){
-        cout << res[i] <<endl;
-    }
-
+    for(i = 0; i < t; i++) cout << res[i] << endl;
     return 0;
 }

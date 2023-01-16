@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \C.cpp                                                                                     *
-* Project: 20230114_Contest                                                                        *
-* Created Date: Saturday Jan 14th 2023, 10:57:27 pm                                                *
+* File: \E.cpp                                                                                     *
+* Project: 20230116_Contest                                                                        *
+* Created Date: Monday Jan 16th 2023, 4:51:55 pm                                                   *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 15/01/2023 07:29:30                                                               *
+* Last Modified: 16/01/2023 05:09:29                                                               *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -19,30 +19,16 @@
 
 
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
-#define MAXN 0x3f3f3f3f
-
 int main(){
-    int t, n, a, i, j;
-    long long  s1, s2, * res;
+    int t, xa, ya, xb, yb, xc, yc, i;
+    double xd, yd, xe, ye, xf, yf;
+
     cin >> t;
-    res = new long long[t];
-    for(i = 0; i < t; i++){
-        res[i] = 0;
-        cin >> n;
-        for(j = 0; j < n; j++){
-            cin >> a;
-            res[i] += a;
-        }
-        res[i] = abs(res[i]);
-    }
 
     for(i = 0; i < t; i++){
-        cout << res[i] <<endl;
-    }
 
-    return 0;
+    }
 }

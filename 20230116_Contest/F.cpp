@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \C.cpp                                                                                     *
-* Project: 20230114_Contest                                                                        *
-* Created Date: Saturday Jan 14th 2023, 10:57:27 pm                                                *
+* File: \F.cpp                                                                                     *
+* Project: 20230116_Contest                                                                        *
+* Created Date: Monday Jan 16th 2023, 4:58:13 pm                                                   *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 15/01/2023 07:29:30                                                               *
+* Last Modified: 16/01/2023 05:23:13                                                               *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -23,26 +23,45 @@
 
 using namespace std;
 
-#define MAXN 0x3f3f3f3f
+long long f(long long x){
+    return (long long)round(10 * sqrt(x));
+}
 
 int main(){
-    int t, n, a, i, j;
-    long long  s1, s2, * res;
-    cin >> t;
-    res = new long long[t];
-    for(i = 0; i < t; i++){
-        res[i] = 0;
-        cin >> n;
-        for(j = 0; j < n; j++){
-            cin >> a;
-            res[i] += a;
-        }
-        res[i] = abs(res[i]);
+    int n, m, op, l, r, k, i, j, q, s = 0;
+    long long * a, sum = 0, * res;
+
+    cin >> n >> m;
+    a = new long long[n];
+    res = new long long[m];
+    for(i = 0; i < n; i++){
+        cin >> a[i];
+        sum += a[i];
     }
 
-    for(i = 0; i < t; i++){
-        cout << res[i] <<endl;
+    for(j = 0; j < m; j++){
+        cin >> op;
+        if(op == 1){
+            cin >> l >> r >> k;
+            for(i = l; i <= r; i++){
+                sum -= a[i - 1];
+                for(q = 0; q < k; q++){
+                    a[i - 1] = (long long)round(10 * sqrt(a[i - 1]));
+                    // cout << a[i - 1] << " ";
+                }
+                sum += a[i - 1];
+            }
+        }
+        else if(op == 2){
+            // cout << sum << endl;
+            res[s++] = sum;
+        }
     }
+
+    if(s)
+        for(i = 0; i < s; i++) cout << res[i] << endl;
+
+    // cout << f(0) << endl;
 
     return 0;
 }

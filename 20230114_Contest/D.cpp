@@ -7,7 +7,7 @@
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 14/01/2023 11:28:44                                                               *
+* Last Modified: 15/01/2023 07:53:28                                                               *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -31,12 +31,14 @@ int main(){
     int n, i;
     cin >> n;
 
-    for(i = 0; i < n; i++){
+    for(i = 0; i < n && i < 7; i++){
         ans += color[i % 7];
     }
 
-    if(n % 7 == 1){
-        ans[n - 1] = 'G';
+    if(n > 7){
+        for(i = 7; i < n; i++){
+            ans += color[(i - 7) % 4 + 3];
+        }
     }
 
     cout << ans << endl;

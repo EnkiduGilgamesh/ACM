@@ -2,12 +2,12 @@
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
 * File: \C.cpp                                                                                     *
-* Project: 20230114_Contest                                                                        *
-* Created Date: Saturday Jan 14th 2023, 10:57:27 pm                                                *
+* Project: 20230116_Contest                                                                        *
+* Created Date: Monday Jan 16th 2023, 1:54:57 pm                                                   *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 15/01/2023 07:29:30                                                               *
+* Last Modified: 16/01/2023 06:07:37                                                               *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -19,30 +19,33 @@
 
 
 #include <iostream>
-#include <cmath>
+#include <cstring>
 
 using namespace std;
 
-#define MAXN 0x3f3f3f3f
+int min(int a, int b){
+    if(a < b) return a;
+    else return b;
+}
+
+using namespace std;
 
 int main(){
-    int t, n, a, i, j;
-    long long  s1, s2, * res;
+    int t, n, i, j;
+    long long *res, h, H;
     cin >> t;
     res = new long long[t];
     for(i = 0; i < t; i++){
-        res[i] = 0;
+        H = 0;
         cin >> n;
         for(j = 0; j < n; j++){
-            cin >> a;
-            res[i] += a;
+            cin >> h;
+            if(h > 0) H++;
         }
-        res[i] = abs(res[i]);
+        res[i] = H;
     }
 
     for(i = 0; i < t; i++){
-        cout << res[i] <<endl;
+        cout << res[i] << endl;
     }
-
-    return 0;
 }

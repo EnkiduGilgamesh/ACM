@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \C.cpp                                                                                     *
-* Project: 20230114_Contest                                                                        *
-* Created Date: Saturday Jan 14th 2023, 10:57:27 pm                                                *
+* File: \M.cpp                                                                                     *
+* Project: 20230116_Contest                                                                        *
+* Created Date: Monday Jan 16th 2023, 2:44:59 pm                                                   *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 15/01/2023 07:29:30                                                               *
+* Last Modified: 16/01/2023 03:24:54                                                               *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -19,30 +19,32 @@
 
 
 #include <iostream>
-#include <cmath>
+#include <cstdio>
 
 using namespace std;
 
-#define MAXN 0x3f3f3f3f
-
 int main(){
-    int t, n, a, i, j;
-    long long  s1, s2, * res;
-    cin >> t;
-    res = new long long[t];
-    for(i = 0; i < t; i++){
-        res[i] = 0;
-        cin >> n;
-        for(j = 0; j < n; j++){
-            cin >> a;
-            res[i] += a;
+    int m, n, ave, o, k = 0;
+    double good = 0.0;
+    cin >> n >> m;
+    if(n == 1){
+        cout << 1.0 << endl;
+        return 0;
+    }
+    if(m < n) ave = 1, o = 0;
+    else ave = (m - 1) / (n - 1), o = (m - 1) % (n - 1);
+    while((m - ave) > 0){
+        if(k < (n - 1 - o)){
+            good += (double)ave / m;
         }
-        res[i] = abs(res[i]);
+        else good += (double)(ave + 1) / m;
+        m -= ave;
     }
-
-    for(i = 0; i < t; i++){
-        cout << res[i] <<endl;
-    }
-
+    good++;
+    cout.precision(15);
+    // printf("%f", good)
+    // good = ((double)m - 1.0) / m + 1.0
+    cout << good << endl;
+    
     return 0;
 }

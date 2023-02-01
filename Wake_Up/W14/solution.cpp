@@ -7,7 +7,7 @@
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 1/02/2023 10:55:26                                                                *
+* Last Modified: 1/02/2023 11:34:41                                                                *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -46,9 +46,9 @@ int main(){
             m = floor(log(a) / log(b + j)) + 1;
             if(m + j <= ans[i]){
                 ans[i] = m + j;
-                j++;
             }
-            else break;
+            j++;
+            if(m + j >= 32) break;
         }
     }
 

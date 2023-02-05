@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \E.cpp                                                                                     *
-* Project: 20230120_NewCode                                                                        *
-* Created Date: Sunday Feb 5th 2023, 10:43:22 am                                                   *
+* File: \H.cpp                                                                                     *
+* Project: 20230203_NowCoder                                                                       *
+* Created Date: Friday Feb 3rd 2023, 1:09:06 pm                                                    *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 5/02/2023 10:43:57                                                                *
+* Last Modified: 3/02/2023 01:15:17                                                                *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -22,21 +22,16 @@
 
 using namespace std;
 
-// ERROR: 95% accepted
-
 int main(){
-    int xa, xb, ya, yb, xc, yc;
+    int x, l, r;
+    double p;
+    cin >> x >> l >> r;
 
-    cin >> xa >> ya >> xb >> yb;
+    cout.precision(16);
 
-    if((xa + xb - ya + yb) % 2 || (ya + yb + xa - xb) % 2)
-        cout << "No Answer!" << endl;
-    else{
-        xc = (xa + xb - ya + yb) / 2;
-        yc = (ya + yb + xa - xb) / 2;
-        cout << xc << " " << yc << endl;
-    }
+    if(x < l) cout << 0 << endl;
+    else if(x <= r) cout << double(x - l) / (r - l + 1) << endl;
+    else cout << 1 << endl;
 
     return 0;
-
 }

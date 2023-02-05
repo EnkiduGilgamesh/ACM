@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \E.cpp                                                                                     *
-* Project: 20230120_NewCode                                                                        *
-* Created Date: Sunday Feb 5th 2023, 10:43:22 am                                                   *
+* File: \solution.cpp                                                                              *
+* Project: W17_Balanced_Remainders                                                                 *
+* Created Date: Saturday Feb 4th 2023, 10:09:17 am                                                 *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 5/02/2023 10:43:57                                                                *
+* Last Modified: 4/02/2023 10:47:51                                                                *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -19,24 +19,46 @@
 
 
 #include <iostream>
+#include <cstring>
+#include <cmath>
 
 using namespace std;
 
-// ERROR: 95% accepted
-
 int main(){
-    int xa, xb, ya, yb, xc, yc;
+    int t, n, n3, a, c[3], i, j;
+    long long * move;
 
-    cin >> xa >> ya >> xb >> yb;
+    cin >> t;
+    move = new long long[t];
+    memset(move, 0, sizeof(long long) * t);
+    for(i = 0; i < t; i++){
+        cin >> n;
+        n3 = n / 3;
+        memset(c, 0, sizeof(int) * 3);
+        for(j = 0; j < n; j++){
+            cin >> a;
+            c[a % 3]++;
+        }
+        while(c[0] > n3 || c[1] > n3 || c[2] > n3){
+            move[i]++;
+            if(c[0] < n3){
+                c[0]++;
+                c[2]--;
+            }
+            else if(c[1] < n3){
+                c[1]++;
+                c[0]--;
+            }
+            else{
+                c[2]++;
+                c[1]--;
+            }
+        }
+    }
 
-    if((xa + xb - ya + yb) % 2 || (ya + yb + xa - xb) % 2)
-        cout << "No Answer!" << endl;
-    else{
-        xc = (xa + xb - ya + yb) / 2;
-        yc = (ya + yb + xa - xb) / 2;
-        cout << xc << " " << yc << endl;
+    for(i = 0; i < t; i++){
+        cout <<  move[i] << endl;
     }
 
     return 0;
-
 }

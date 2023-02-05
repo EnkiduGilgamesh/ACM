@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \E.cpp                                                                                     *
-* Project: 20230120_NewCode                                                                        *
-* Created Date: Sunday Feb 5th 2023, 10:43:22 am                                                   *
+* File: \C.cpp                                                                                     *
+* Project: 20230203_NowCoder                                                                       *
+* Created Date: Friday Feb 3rd 2023, 2:02:24 pm                                                    *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 5/02/2023 10:43:57                                                                *
+* Last Modified: 3/02/2023 02:45:49                                                                *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -22,20 +22,46 @@
 
 using namespace std;
 
-// ERROR: 95% accepted
+int mod = 1e9 + 7;
+
+int packSum(int * a, int len){
+    if(len == 1) return a[0] % mod;
+    else if(len == 2) return (a[0] % mod + a[1] % mod) % mod;
+    else{
+        for(int i = 0; i < len - 1; i++){
+            a[i] = (a[i] % mod + a[i + 1] % mod) % mod;
+        }
+        return packSum(a, len - 1);
+    }
+}
 
 int main(){
-    int xa, xb, ya, yb, xc, yc;
+    int n, i, l = 0, r, * a, * t;
 
-    cin >> xa >> ya >> xb >> yb;
+    cin >> n;
+    r = n - 1;
+    a = new int[n];
+    t = new int[n];
 
-    if((xa + xb - ya + yb) % 2 || (ya + yb + xa - xb) % 2)
-        cout << "No Answer!" << endl;
-    else{
-        xc = (xa + xb - ya + yb) / 2;
-        yc = (ya + yb + xa - xb) / 2;
-        cout << xc << " " << yc << endl;
+    for(i = 0; i < n; i++){
+        if(!(i % 2)){
+            a[l] = i + 1;
+            t[l] = i + 1;
+            l++;
+        }
+        else{
+            a[r] = i + 1;
+            t[r] = i + 1;
+            r--;
+        }
     }
+
+    cout << packSum(a, n) << endl;
+
+    for(i = 0; i < n; i++){
+        cout << t[i] << " ";
+    }
+    cout << endl;
 
     return 0;
 

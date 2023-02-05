@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \E.cpp                                                                                     *
-* Project: 20230120_NewCode                                                                        *
-* Created Date: Sunday Feb 5th 2023, 10:43:22 am                                                   *
+* File: \solution.cpp                                                                              *
+* Project: W18_Average_Height                                                                      *
+* Created Date: Sunday Feb 5th 2023, 10:32:01 am                                                   *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 5/02/2023 10:43:57                                                                *
+* Last Modified: 5/02/2023 10:40:26                                                                *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -19,24 +19,30 @@
 
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-// ERROR: 95% accepted
+int ans[500][2000];
 
 int main(){
-    int xa, xb, ya, yb, xc, yc;
-
-    cin >> xa >> ya >> xb >> yb;
-
-    if((xa + xb - ya + yb) % 2 || (ya + yb + xa - xb) % 2)
-        cout << "No Answer!" << endl;
-    else{
-        xc = (xa + xb - ya + yb) / 2;
-        yc = (ya + yb + xa - xb) / 2;
-        cout << xc << " " << yc << endl;
+    int t, n[500], l, r, i, j, a;
+    cin >> t;
+    
+    for(i = 0; i < t; i++){
+        cin >> n[i];
+        l = 0; r = n[i] - 1;
+        for(j = 0; j < n[i]; j++){
+            cin >> a;
+            if(a % 2) ans[i][l++] = a;
+            else ans[i][r--] = a;
+        }
     }
 
-    return 0;
-
+    for(i = 0; i < t; i++){
+        for(j = 0; j < n[i]; j++){
+            cout << ans[i][j] << " ";
+        }
+        cout << endl;
+    }
 }

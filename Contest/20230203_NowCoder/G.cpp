@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \E.cpp                                                                                     *
-* Project: 20230120_NewCode                                                                        *
-* Created Date: Sunday Feb 5th 2023, 10:43:22 am                                                   *
+* File: \G.cpp                                                                                     *
+* Project: 20230203_NowCoder                                                                       *
+* Created Date: Friday Feb 3rd 2023, 1:09:06 pm                                                    *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 5/02/2023 10:43:57                                                                *
+* Last Modified: 3/02/2023 01:34:40                                                                *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -19,24 +19,29 @@
 
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-// ERROR: 95% accepted
-
 int main(){
-    int xa, xb, ya, yb, xc, yc;
+    int n, k, i, m = 0, j = 0;
+    long long sum = 0;
+    int * a;
+    cin >> n >> k;
+    a = new int[n];
+    for(i = 0; i < n; i++) cin >> a[i];
+    sort(a, a + n);
 
-    cin >> xa >> ya >> xb >> yb;
-
-    if((xa + xb - ya + yb) % 2 || (ya + yb + xa - xb) % 2)
-        cout << "No Answer!" << endl;
-    else{
-        xc = (xa + xb - ya + yb) / 2;
-        yc = (ya + yb + xa - xb) / 2;
-        cout << xc << " " << yc << endl;
+    for(i = 0; i < k; i++){
+        if(a[j] * a[j + 1] > a[n - m - 1] * a[n - m - 2]){
+            sum += a[j] * a[j + 1];
+            j += 2;
+        }
+        else{
+            sum += a[n - m - 1] * a[n - m - 2];
+            m += 2;
+        }
     }
 
-    return 0;
-
+    cout << sum << endl;
 }

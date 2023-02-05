@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \E.cpp                                                                                     *
-* Project: 20230120_NewCode                                                                        *
-* Created Date: Sunday Feb 5th 2023, 10:43:22 am                                                   *
+* File: \D.cpp                                                                                     *
+* Project: 20230203_NowCoder                                                                       *
+* Created Date: Friday Feb 3rd 2023, 3:42:06 pm                                                    *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 5/02/2023 10:43:57                                                                *
+* Last Modified: 3/02/2023 03:46:0                                                                 *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -19,24 +19,23 @@
 
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-// ERROR: 95% accepted
-
 int main(){
-    int xa, xb, ya, yb, xc, yc;
+    string s;
+    cin >> s;
 
-    cin >> xa >> ya >> xb >> yb;
+    int len = s.length(), i, ifu;
 
-    if((xa + xb - ya + yb) % 2 || (ya + yb + xa - xb) % 2)
-        cout << "No Answer!" << endl;
-    else{
-        xc = (xa + xb - ya + yb) / 2;
-        yc = (ya + yb + xa - xb) / 2;
-        cout << xc << " " << yc << endl;
+    for(i = 0; i < len; i++){
+        if(s[i] == 'u') ifu = 1;
+        if(s[i] == 'd' && ifu == 1){
+            s[i] = 's';
+            break;
+        }
     }
 
-    return 0;
-
+    cout << s << endl;
 }

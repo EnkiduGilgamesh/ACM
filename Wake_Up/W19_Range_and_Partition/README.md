@@ -2869,9 +2869,9 @@ $$
 \end{equation}
 $$
 
-Simply rhe conditions we can get the relationship of $cnt_1$ and $cnt_2$ which is 
-$$
-cnt_1 \geq \lceil \frac{n + k}{2} \rceil
-$$. 
+Simply rhe conditions we can get the relationship of $cnt_1$ and $cnt_2$ which is $
+cnt_1 \geq \lceil \frac{n + k}{2} \rceil$. So the minimum of $cnt_1$ is $\lceil\frac{n + k}{2} \rceil$.
 
-We can copy the original array and sort it. Then we can select 
+We can copy the original array and sort it. Then we can select a subarray including $cnt_1$ elements. The left end of this subarray is $x$ and the right end is $y$. Travel the array, we can find a pair of $[x, y]$ that makes the $y - x$ minimum.
+
+Now the question continuously comes to how to divide the array. We just need to set a $score$ and travel the array. Whenever the element is in the range, the $score$ increase by $1$, otherwise decrease by $1$. And then if $score > 0$, we recognize the begin position as $l$ and the end position as $r$. Finally, we reset the $score$ as $0$, and restart scoring at the next element's position.

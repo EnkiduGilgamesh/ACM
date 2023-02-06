@@ -260,7 +260,7 @@ The violent simulation's time complexity is $O(n^3)$ which is not acceptable whe
 
 We need to take another perspective to look at this problem. For every $a_i$, it can be the maximum number in range $\left(l_{i}, r_{i}\right)$ and be the minimum number in range $\left(l'_{i}, r'_{i}\right)$. Then, if we take the subarray's left end point in $\left(l_{i}, i\right]$, and the right end point in $\left[i, r_{i}\right)$, the subarray's maximum number will be $a_{i}$. There are totally $(i - l_{i}) \cdot (r_{i} - i)$ posibilities. Therefore, the final answer will increase by $a_i  \cdot (i - l_{i}) \cdot (r_{i} - i)$. The same to take $a_{i}$ as the minimum number. The final answer will decrease by $a_i  \cdot (i - l'_{i}) \cdot (r'_{i} - i)$. Notice that the $[i, i]$ situation's imbalanced value is $0$ which is equal to increase by $a_i$ and then decrease by $a_i$.
 
-Now the question comes to how to get the $\left(l_{i}, r_{i}\right)$ and $\left(l'_{i}, r'_{i}\right)$ for every $a_i$. For $l_i$ we can observe that:
+Now the question comes to how to get the $\left(l_{i}, r_{i}\right)$ and $\left(l'_{i}, r'_{i}\right)$ for every $a_i$. For $l_i$ and $r_i$ we can observe that:
 
 * $l_0 = -1$;
 * $l_i = l_{j}\ if\ a_i \geq a_{j}\ until \ j = 0 \lor a_i < a_j, j \in [0, i-1]$; otherwise $l_i = i - 1$.

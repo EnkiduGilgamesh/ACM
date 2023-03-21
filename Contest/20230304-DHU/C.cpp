@@ -1,13 +1,13 @@
 /*-*- gcc 10.3.0 -*-*/
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
-* File: \A.cpp                                                                                     *
-* Project: 20230309_CF                                                                             *
-* Created Date: Tuesday Mar 21st 2023, 9:49:06 pm                                                  *
+* File: \C.cpp                                                                                     *
+* Project: 20230304-DHU                                                                            *
+* Created Date: Saturday Mar 4th 2023, 4:32:40 pm                                                  *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 21/03/2023 09:51:12                                                               *
+* Last Modified: 4/03/2023 05:31:27                                                                *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -18,51 +18,46 @@
 ***************************************************************************************************/
 
 
-// ERROR: TLE
-
 #include <iostream>
+#include <cstring>
+#include <map>
 
 using namespace std;
 
-int a;
-int t, n, i, j;
-int neg, pos, rep;
+map<string, int> pot;
+map<string, int>::iterator it;
 
-void solve(){
-    for(i = 0; i < pos; i++){
-        cout << ++rep << " ";
-    }
-    for(i = 0; i < neg; i++){
-        cout << --rep << " ";
-    }
-    cout << endl;
-
-    rep = 0;
-
-    for(i = 0; i < neg; i++){
-        cout << 1 << " ";
-        cout << 0 << " ";
-    }
-    for(i = 0; i < n - 2 * neg; i++){
-        cout << ++rep << " ";
-    }
-    cout << endl;
-}
+char * s = new char[100010];
+char * token, * ptr;
+string mat;
+int num, t;
 
 int main(){
+    cin.getline(s, 100000);
+
+    token = strtok_s(s, " ", &ptr);
+
+    while(token != NULL){
+        mat = token;
+        if(pot.find(mat) == pot.end()) pot[mat] = 0;
+        token = strtok_s(NULL, " ", &ptr);
+        num = atoi(token);
+        token = strtok_s(NULL, " ", &ptr);
+        pot[mat] += num;
+    }
+
     cin >> t;
 
-    for(i = 0; i < t; i++){
-        cin >> n;
-        // a = new int[n];
-        neg = 0, pos = 0, rep = 0;
-        for(j = 0; j < n; j++){
-            cin >> a;
-            if(a > 0) pos++;
-            else neg++;
-        }
-        solve();
+    for(int i = 0; i < t; i++){
+        cin >> mat;
+        it = pot.find(mat);
+        if(it != pot.end() && pot[mat] > 0)
+            cout << pot[mat]-- << endl;
+        else
+            cout << 0 << endl;
     }
+
+    cout << endl;
 
     return 0;
 }

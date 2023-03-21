@@ -2,12 +2,12 @@
 /*-*- coding:utf-8 -*-*/
 /***************************************************************************************************
 * File: \A.cpp                                                                                     *
-* Project: 20230309_CF                                                                             *
-* Created Date: Tuesday Mar 21st 2023, 9:49:06 pm                                                  *
+* Project: 20230304-DHU                                                                            *
+* Created Date: Saturday Mar 4th 2023, 3:26:12 pm                                                  *
 * Author: Wenren Muyan                                                                             *
 * Comments:                                                                                        *
 * --------------------------------------------------------------------------------                 *
-* Last Modified: 21/03/2023 09:51:12                                                               *
+* Last Modified: 4/03/2023 03:33:1                                                                 *
 * Modified By: Wenren Muyan                                                                        *
 * --------------------------------------------------------------------------------                 *
 * Copyright (c) 2023 - future Wenren Muyan                                                         *
@@ -18,51 +18,39 @@
 ***************************************************************************************************/
 
 
-// ERROR: TLE
-
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-int a;
-int t, n, i, j;
-int neg, pos, rep;
+int n, * a, * sa;
+long long * ans;
 
 void solve(){
-    for(i = 0; i < pos; i++){
-        cout << ++rep << " ";
-    }
-    for(i = 0; i < neg; i++){
-        cout << --rep << " ";
-    }
-    cout << endl;
+    for(int i = 0; i < n; i++){
+        if(a[i] != sa[0]){
+            ans[i] = (long long)a[i] + sa[0];
+        }
+        else ans[i] = (long long)a[i] + sa[1];
 
-    rep = 0;
-
-    for(i = 0; i < neg; i++){
-        cout << 1 << " ";
-        cout << 0 << " ";
+        cout << ans[i] << " ";
     }
-    for(i = 0; i < n - 2 * neg; i++){
-        cout << ++rep << " ";
-    }
-    cout << endl;
 }
 
 int main(){
-    cin >> t;
-
-    for(i = 0; i < t; i++){
-        cin >> n;
-        // a = new int[n];
-        neg = 0, pos = 0, rep = 0;
-        for(j = 0; j < n; j++){
-            cin >> a;
-            if(a > 0) pos++;
-            else neg++;
-        }
-        solve();
+    cin >> n;
+    int i;
+    a = new int[n];
+    sa = new int[n];
+    ans = new long long[n];
+    for(i = 0; i < n; i++){
+        cin >> a[i];
+        sa[i] = a[i];
     }
+
+    sort(sa, sa + n, greater<int>());
+    solve();
+    cout << endl;
 
     return 0;
 }
